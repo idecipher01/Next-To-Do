@@ -26,9 +26,6 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      display: "flex",
-    },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(["width", "margin"], {
@@ -81,10 +78,6 @@ const useStyles = makeStyles((theme: Theme) =>
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
     },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-    },
   })
 );
 
@@ -113,7 +106,7 @@ export default function Sidebar() {
         <Toolbar>
           <IconButton
             color="inherit"
-            aria-label="open drawer"
+            aria-label="open drawer" 
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, {
