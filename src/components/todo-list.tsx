@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const TodoList = () => {
+const TodoList = (props:any) => {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
 
@@ -39,28 +39,18 @@ const TodoList = () => {
 
   return (
     <div>
-      <form className={classes.root} noValidate autoComplete="off">
-        <FormControl fullWidth>
-          <TextField
-            required
-            id="standard-required"
-            label="Required"
-            placeholder="+ Add Task"
-          />
-        </FormControl>
-      </form>
       <div>
         <List className={classes.root}>
-          {[0, 1, 2, 3].map((value) => {
-            const labelId = `checkbox-list-label-${value}`;
+          {props.renderList.map((value:any) => {
+            const labelId = `checkbox-list-label-${value.id}`;
 
             return (
               <ListItem
-                key={value}
+                key={value.id}
                 role={undefined}
                 dense
                 button
-                onClick={handleToggle(value)}
+                onClick={handleToggle(value.id)}
               >
                 <ListItemIcon>
                   <Checkbox
@@ -71,7 +61,7 @@ const TodoList = () => {
                     inputProps={{ "aria-labelledby": labelId }}
                   />
                 </ListItemIcon>
-                <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+                <ListItemText id={labelId} primary={` ${value.task + 1}`} />
               </ListItem>
             );
           })}

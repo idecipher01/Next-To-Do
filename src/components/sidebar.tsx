@@ -22,6 +22,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Assignment, AssignmentTurnedIn, ListAlt } from "@material-ui/icons";
 
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>

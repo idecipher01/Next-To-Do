@@ -1,7 +1,7 @@
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-import TodoList from './todo-list';
+import TodoList from '../../src/components/todo-list';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,20 +16,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const AllTodo = () => {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState([0]);
+  // const [checked, setChecked] = React.useState([0]);
 
-  const handleToggle = (value: number) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+  // const handleToggle = (value: number) => () => {
+  //   const currentIndex = checked.indexOf(value);
+  //   const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
+  //   if (currentIndex === -1) {
+  //     newChecked.push(value);
+  //   } else {
+  //     newChecked.splice(currentIndex, 1);
+  //   }
 
-    setChecked(newChecked);
-  };
+  //   setChecked(newChecked);
+  // };
 
   return (
     <div>
