@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const AllTodo = () => {
+const AllTodo = (props:any) => {
   const classes = useStyles();
   // const [checked, setChecked] = React.useState([0]);
 
@@ -33,7 +33,7 @@ const AllTodo = () => {
 
   return (
     <div>
-      <TodoList/>
+      <TodoList renderList={props.todolist}/>
     </div>
   );
 };
