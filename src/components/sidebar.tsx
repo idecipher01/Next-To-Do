@@ -22,7 +22,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Assignment, AssignmentTurnedIn, ListAlt } from "@material-ui/icons";
 
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -82,7 +81,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function Sidebar() {
+export default function Sidebar(props: any) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -96,7 +95,7 @@ export default function Sidebar() {
   };
 
   return (
-    < >
+    <>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -107,7 +106,7 @@ export default function Sidebar() {
         <Toolbar>
           <IconButton
             color="inherit"
-            aria-label="open drawer" 
+            aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, {
@@ -146,11 +145,11 @@ export default function Sidebar() {
         <Divider />
         <List>
           {[
-            { text: "All Tasks", icon: <Assignment /> },
-            { text: "Inbox", icon: <ListAlt /> },
-            { text: "Completed", icon: <AssignmentTurnedIn /> },
+            { text: "All Tasks", icon: <Assignment />, listname:"alltodos" },
+            { text: "Inbox", icon: <ListAlt />, listname:"addtodo" },
+            { text: "Completed", icon: <AssignmentTurnedIn />, listname:"completed" },
           ].map((item, index) => (
-            <ListItem button key={item.text}>
+            <ListItem button key={item.text} onClick={() => props.changeActiveList(item.listname)}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItem>

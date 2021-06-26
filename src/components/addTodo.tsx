@@ -25,34 +25,12 @@ const AddTodo = (props:any) => {
   const [newTodo, setTodo] = useState("");
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
-    try {
-      console.log(props.todolist)
-      if (!props.todolist||props.todolist.length===0) {
-        let newtodo = {
-          id:1,
-          task:newTodo,
-          completed:false
-        }
-        let newtodos = [newtodo]
-        localStorage.setItem("todos",JSON.stringify(newtodos));
-      }
-      else{
-        let lasttodoId = props.todolist[props.todolist.length-1].id;
-        let newtodo = {
-          id:lasttodoId+1,
-          task:newTodo,
-          completed:false
-        }
-        props.todolist.push(newtodo);
-        localStorage.setItem("todos",JSON.stringify(props.todolist));
-      }
-    } catch (err) {
-      console.log(err);
-    }
+      props.handleAddTodo(newTodo);
+      setTodo("")
   };
 
   const handleChange = (e: any) => {
+    e.preventDefault();
     setTodo(e.target.value);
   };
 
@@ -72,6 +50,7 @@ const AddTodo = (props:any) => {
             id="standard-required"
             label="Required"
             placeholder="+ Add Task"
+            defaultValue={newTodo}
             onChange={(e) => handleChange(e)}
           />
         </FormControl>
@@ -87,7 +66,9 @@ const AddTodo = (props:any) => {
           Save
         </Button>
       </form>
-      <TodoList renderList={props.todolist}/>
+      <TodoList renderList={props?.todolist?.filter((t:any)=>{
+        return t.completed !==true
+      })} handleComplete={props.handleComplete}/>
     </div>
   );
 };

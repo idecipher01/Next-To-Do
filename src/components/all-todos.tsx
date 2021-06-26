@@ -16,24 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const AllTodo = (props:any) => {
   const classes = useStyles();
-  // const [checked, setChecked] = React.useState([0]);
-
-  // const handleToggle = (value: number) => () => {
-  //   const currentIndex = checked.indexOf(value);
-  //   const newChecked = [...checked];
-
-  //   if (currentIndex === -1) {
-  //     newChecked.push(value);
-  //   } else {
-  //     newChecked.splice(currentIndex, 1);
-  //   }
-
-  //   setChecked(newChecked);
-  // };
 
   return (
     <div>
-      <TodoList renderList={props.todolist}/>
+      <h2>All Todos</h2>
+      <TodoList renderList={props.todolist} handleComplete={props.handleComplete}/>
     </div>
   );
 };
