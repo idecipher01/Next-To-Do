@@ -7,6 +7,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,12 +27,10 @@ interface id {
 
 const TodoList = (props: any) => {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState<number[]>([]);
 
   const handleToggle = (value: number) => () => {
-    props.handleComplete(value)
+    props.handleComplete(value);
   };
-
 
   return (
     <div>
@@ -40,25 +40,28 @@ const TodoList = (props: any) => {
             const labelId = `checkbox-list-label-${value.id}`;
 
             return (
-              <ListItem
-                key={value.id}
-                role={undefined}
-                dense
-                button
-                onClick={handleToggle(value.id)}
-              >
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    checked={value.completed}
-                    disableRipple
-                    // value={value}
-                    inputProps={{ "aria-labelledby": labelId }}
-                    // onChange={(e)=>{handleChange(e,value)}}
-                  />
-                </ListItemIcon>
-                <ListItemText id={labelId} primary={` ${value.task}`} />
-              </ListItem>
+              <>
+                <ListItem
+                  key={value.id}
+                  role={undefined}
+                  dense
+                  button
+                  
+                >
+                  <ListItemIcon onClick={handleToggle(value.id)}>
+                    <Checkbox
+                      edge="start"
+                      checked={value.completed}
+                      disableRipple
+                      inputProps={{ "aria-labelledby": labelId }}
+                    />
+                  </ListItemIcon>
+                  <ListItemText id={labelId} primary={` ${value.task}`} />
+                  <IconButton aria-label="delete" onClick={()=>{props.handleDelete(value.id)}}>
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItem>
+              </>
             );
           })}
         </List>

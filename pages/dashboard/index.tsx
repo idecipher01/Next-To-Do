@@ -101,6 +101,14 @@ export default function Home() {
       getTodos();
   }
 
+  const handleDelete = (value:number) => {
+    let todo = todos.filter((t) => {
+      return t.id !== value
+    });
+    localStorage.setItem("todos",JSON.stringify(todo));
+    getTodos();
+  }
+
   console.log(activeList,'listname')
 
   return (
@@ -115,11 +123,11 @@ export default function Home() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {activeList === "addtodo" ? (
-          <AddTodo todolist={todos} handleAddTodo= {handleAddTodo} handleComplete={handleComplete}/>
+          <AddTodo todolist={todos} handleAddTodo= {handleAddTodo} handleComplete={handleComplete} handleDelete={handleDelete}/>
         ) : activeList === "alltodos" ? (
-          <AllTodo todolist={todos} handleComplete={handleComplete}/>
+          <AllTodo todolist={todos} handleComplete={handleComplete}  handleDelete={handleDelete}/>
         ) : (
-          <CompletedTodo todolist={todos} />
+          <CompletedTodo todolist={todos} handleComplete={handleComplete}   handleDelete={handleDelete}/>
         )}
         {/* <AddTodo todolist={todos} />
         <AllTodo todolist={todos} />

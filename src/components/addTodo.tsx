@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { FormControl, Button } from "@material-ui/core";
@@ -19,22 +19,21 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const AddTodo = (props:any) => {
+const AddTodo = (props: any) => {
   const classes = useStyles();
 
   const [newTodo, setTodo] = useState("");
 
   const handleSubmit = (e: any) => {
-      props.handleAddTodo(newTodo);
-      setTodo("")
+    e.preventDefault();
+    props.handleAddTodo(newTodo);
+    setTodo("");
   };
 
   const handleChange = (e: any) => {
     e.preventDefault();
     setTodo(e.target.value);
   };
-
-  console.log(props.todolist)
 
   return (
     <div>
@@ -66,9 +65,13 @@ const AddTodo = (props:any) => {
           Save
         </Button>
       </form>
-      <TodoList renderList={props?.todolist?.filter((t:any)=>{
-        return t.completed !==true
-      })} handleComplete={props.handleComplete}/>
+      <TodoList
+        renderList={props?.todolist?.filter((t: any) => {
+          return t.completed !== true;
+        })}
+        handleComplete={props.handleComplete}
+        handleDelete={props.handleDelete}
+      />
     </div>
   );
 };

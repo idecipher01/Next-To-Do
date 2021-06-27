@@ -36,7 +36,10 @@ const CompletedTodo = (props:any) => {
       <h2>Completed Todos</h2>
       <TodoList renderList={props?.todolist?.filter((t:any)=>{
         return t.completed ===true
-      })}/>
+      })}
+      handleComplete={props.handleComplete}
+      handleDelete={props.handleDelete}
+      />
     </div>
   );
 };
