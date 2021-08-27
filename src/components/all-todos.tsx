@@ -19,7 +19,7 @@ const AllTodo = (props:any) => {
 
   return (
     <div>
-      <h2>All Todos</h2>
+      <h2>Hey Todos</h2>
       <TodoList renderList={props.todolist} handleComplete={props.handleComplete}/>
     </div>
   );
